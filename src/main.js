@@ -4,8 +4,8 @@ import App from './App.vue';
 import Home from './views/home';
 import Quiz from './views/quiz';
 
-
 Vue.use(VueRouter);
+
 const routes = [
   {path: '/', component: Home},
   {path:'/quiz', component: Quiz}
