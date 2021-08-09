@@ -2,15 +2,16 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
 <!--    <home msg="Welcome to Your Vue.js App"/>-->
-    <router-view></router-view>
+    <home></home>
   </div>
 </template>
 
 <script>
-//import home from './views/home.vue'
+import Home from "./views/home";
 
 export default {
   name: 'App',
+  components: {Home},
   // components: {
   //   home
   // }
