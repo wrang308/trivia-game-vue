@@ -1,7 +1,7 @@
 <template>
     <div>questions
       <div v-bind="index">
-        {{questions.results[index].question}}
+        {{decodeHtml(questions.results[index].question)}}
       </div>
       <button>1</button>
       <button>2</button>
@@ -53,6 +53,13 @@ export default {
         });
 
 
+  },
+  methods:{
+    decodeHtml: function (html) {
+      let txt = document.createElement("textarea");
+      txt.innerHTML = html;
+      return txt.value;
+    }
   }
 
 
