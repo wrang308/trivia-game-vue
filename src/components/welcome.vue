@@ -3,23 +3,22 @@
         Hello component!
         <div>amount of questions</div>
         <select>
-        <option v-for="amount in amounts" :key="amount">{{amount}}</option>
-    
+            <option v-for="amount in amounts" :key="amount">{{amount}}</option>
         </select>
+
         <div>diffulcty</div>
         <select>
-        <option v-for="diffulcty in difficulties" :key="diffulcty">{{diffulcty}}</option>
-    
+            <option>All difficulties</option>
+            <option v-for="diffulcty in difficulties" :key="diffulcty">{{diffulcty}}</option>
         </select>
         
         <div>diffulcty</div>
         <select>
             <option>All categories</option>
-        <option v-for="category in categories.trivia_categories" :key="category.id">{{category.name}}</option>
-    
+            <option v-for="category in categories.trivia_categories" :key="category.id">{{category.name}}</option>
         </select>
         
-        <button>Start Quiz</button>
+        <button><router-link :to="{ path: '/Quiz' }">Quiz</router-link></button>
 
     </div>
 </template>
@@ -28,7 +27,7 @@
 
 
 export default {
- name:'welcome',
+ name:'Welcome',
 data(){
     return{
         amounts:[5,10,15,20,25,30,35,40,45,50],
@@ -50,3 +49,7 @@ data(){
 
 
 </script>
+
+<style scoped>
+
+</style>

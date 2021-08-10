@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App.vue';
-import Home from './views/home';
-import Quiz from './views/quiz';
+import Home from './views/Home';
+import Quiz from './views/Quiz';
 
 Vue.use(VueRouter);
 
 const routes = [
   {path: '/', component: Home},
-  {path:'/quiz', component: Quiz}
+  {path:'/Quiz', component: Quiz}
 ];
 Vue.config.productionTip = false
 
