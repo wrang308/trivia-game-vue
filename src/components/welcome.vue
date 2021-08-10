@@ -2,18 +2,18 @@
     <div>
         Hello component!
         <div>amount of questions</div>
-        <select id="amount">
+        <select id="amount" @change="onChange($event)">
             <option v-for="amount in amounts" :key="amount">{{amount}}</option>
         </select>
 
         <div>diffulcty</div>
-        <select id="difficulties">
+        <select id="difficulties" @change="onChange($event)">
             <option>All difficulties</option>
             <option v-for="diffulcty in difficulties" :key="diffulcty">{{diffulcty}}</option>
         </select>
         
         <div>diffulcty</div>
-        <select id="trivia_categories" @change="onChange($event)">
+        <select id="categories" @change="onChange($event)">
             <option value="-1">All categories</option>
             <option v-for="category in categories.trivia_categories" :key="category.id" :value="category.id" >{{category.name}}</option>
         </select>
@@ -46,8 +46,21 @@ data(){
     });
     }, methods:{
         onChange: function(e){
+            switch(e.target.id) {
+            case "amount":
+                this.selectedData.amount = e.target.value;
+                break;
+            case "difficulties":
+                this.selectedData.diffulcty = e.target.value;
+                break;
+            case "categories":
+                this.selectedData.category = e.target.value;
+                break;
+            default:
+                // code block
+            }
             console.log(e.target.value)
-            this.selectedData.category = e.target.value;
+            console.log(e.target.id)
             
 
         }
