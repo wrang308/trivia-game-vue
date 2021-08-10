@@ -1,7 +1,7 @@
 <template>
     <div>questions
-      <div>
-        What is this ?
+      <div v-bind="index">
+        {{questions.results[index].question}}
       </div>
       <button>1</button>
       <button>2</button>
@@ -21,6 +21,7 @@ export default {
   },
   data(){
     return{
+      index:0,
       questions:{},
       userAnswers:[],
       url:'https://opentdb.com/api.php'
@@ -36,12 +37,14 @@ export default {
    if(this.quizInfo.category !== -1){
      this.url += '&category='+this.quizInfo.category;
    }
+   //this.url += "&encode=url3986";
 
     fetch(this.url)
         .then(response => response.json())
-         .then(data => this.questions = data)
+        .then(data => this.questions = data)
         .then(data => {
             if(data.response_code ===1){
+              alert("Wrong request");
                 this.$router.go(-1)
             }
         })
