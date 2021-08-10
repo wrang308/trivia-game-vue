@@ -39,16 +39,12 @@ export default {
 
     fetch(this.url)
         .then(response => response.json())
+         .then(data => this.questions = data)
         .then(data => {
             if(data.response_code ===1){
                 this.$router.go(-1)
             }
         })
-        // //  if(this.questions.response_code === 1){
-        //     this.$router.push('Home')
-        //   }
-        .then(data => this.questions = data)
-
         .catch((error) => {
           console.log(error)
         });
