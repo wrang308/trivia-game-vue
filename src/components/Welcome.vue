@@ -18,7 +18,7 @@
             <option v-for="category in categories.trivia_categories" :key="category.id" :value="category.id" >{{category.name}}</option>
         </select>
         
-        <button><router-link :to="{ path: '/Quiz', params: selectedData}">Quiz</router-link></button>
+        <button><router-link :to="{ name:'Quiz', params: { data: this.selectedData}} ">Quiz</router-link></button>
 
     </div>
 </template>

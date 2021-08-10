@@ -14,7 +14,14 @@ export default {
   components:{
         Question
         
+    }, data(){
+    return{
+      recievedData: this.$route.params.data
     }
+  },
+  // created(){
+  //   this.recievedData = this.$route.params.data;
+  // }
 }
 </script>
 
