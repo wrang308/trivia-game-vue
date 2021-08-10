@@ -8,7 +8,7 @@
 
         <div>diffulcty</div>
         <select id="difficulties" @change="onChange($event)">
-            <option>All difficulties</option>
+            <option value="-1">All difficulties</option>
             <option v-for="diffulcty in difficulties" :key="diffulcty">{{diffulcty}}</option>
         </select>
         
@@ -45,6 +45,9 @@ data(){
         console.log(error)
     });
     }, methods:{
+        /**
+         * Handles the change on the different selects and updates the selected data every time a select is changed
+         */
         onChange: function(e){
             switch(e.target.id) {
             case "amount":
