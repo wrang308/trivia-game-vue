@@ -4,10 +4,10 @@
         {{decodeHtml(questions.results[index].question)}}
       </div>
       <div v-if="questions.results[index].type ==='multiple'">
-      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer.a)}}</button>
-      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer.b)}}</button>
-      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer.c)}}</button>
-      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer.d)}}</button>
+      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer[0])}}</button>
+      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer[1])}}</button>
+      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer[2])}}</button>
+      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer[3])}}</button>
       </div>
       <div v-else>
         <button @click="nextQuestion">TRUE</button>
@@ -31,14 +31,8 @@ export default {
       questions:{},
       userAnswers:[],
       url:'https://opentdb.com/api.php',
-      multiAnswer:{
-        a:"",
-        b:"",
-        c:"",
-        d:""
-      }
-
-
+      multiAnswer:[]
+      
     }
   },
   created() {
@@ -81,10 +75,19 @@ export default {
     asignMultipleAnswers(){
       if(this.questions.results[this.index].type === 'multiple'){
         //logic to randomize answers
-        this.multiAnswer.a = this.questions.results[this.index].correct_answer;
-        this.multiAnswer.b = this.questions.results[this.index].incorrect_answers[0];
-        this.multiAnswer.c = this.questions.results[this.index].incorrect_answers[1];
-        this.multiAnswer.d = this.questions.results[this.index].incorrect_answers[2];
+        let answers = [...this.questions.results[this.index].incorrect_answers, this.questions.results[this.index].correct_answer];
+       
+        this.multiAnswer = answers;
+        this.randomize();
+      }
+    },
+    // Using Fisher–Yates shuffle algorithm
+    randomize() {
+      for (let i = this.multiAnswer.length - 1; i > 0; i--) {
+        let randomIndex = Math.floor(Math.random() * i);
+        let temp = this.multiAnswer[i];
+        this.$set(this.multiAnswer, i, this.multiAnswer[randomIndex]);
+        this.$set(this.multiAnswer, randomIndex, temp);
       }
     }
   }
