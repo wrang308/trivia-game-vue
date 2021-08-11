@@ -70,15 +70,13 @@ export default {
     },
     nextQuestion: function(e){
       //logic to handle right or wrong answer
-      this.registerUserAnswers(e.target.id)
+      this.registerUserAnswers(e.target.innerHTML)
       this.index ++
       this.asignMultipleAnswers();
       console.log(e.target.id)
     },
     registerUserAnswers: function(value){
-      if(!(value === 'true' || value === 'false')){
-        this.userAnswers.push(parseInt(value))
-      }else this.userAnswers.push(value)
+        this.userAnswers.push(value)
     },
     asignMultipleAnswers(){
       if(this.questions.results[this.index].type === 'multiple'){
