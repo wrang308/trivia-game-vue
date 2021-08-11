@@ -31,8 +31,8 @@ export default {
       questions:{},
       userAnswers:[],
       url:'https://opentdb.com/api.php',
-      multiAnswer:[],
-      correctAnswerIndex: ""
+      multiAnswer:[]
+      //correctAnswerIndex: ""
       
     }
   },
@@ -70,10 +70,15 @@ export default {
     },
     nextQuestion: function(e){
       //logic to handle right or wrong answer
+      this.registerUserAnswers(e.target.id)
       this.index ++
       this.asignMultipleAnswers();
       console.log(e.target.id)
-
+    },
+    registerUserAnswers: function(value){
+      if(!(value === 'true' || value === 'false')){
+        this.userAnswers.push(parseInt(value))
+      }else this.userAnswers.push(value)
     },
     asignMultipleAnswers(){
       if(this.questions.results[this.index].type === 'multiple'){
