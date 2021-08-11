@@ -38,7 +38,7 @@ export default {
   },
   created() {
    this.url += '?amount='+this.quizInfo.amount;
-   if(this.quizInfo.difficulty !== -1){
+   if(this.quizInfo.difficulty !== '-1'){
      this.url += '&difficulty='+this.quizInfo.difficulty;
    }
    if(this.quizInfo.category !== -1){
@@ -114,8 +114,8 @@ export default {
      * logic for shuffling the array using Fisher–Yates shuffle algorithm 
      */
     randomize() {
-      for (let i = this.questionAnswers.length - 1; i > 0; i--) {
-        let randomIndex = Math.floor(Math.random() * i);
+      for (let i = this.questionAnswers.length - 1; i > -1; i--) {
+        let randomIndex = Math.floor(Math.random() * i+1);
         let temp = this.questionAnswers[i];
         this.$set(this.questionAnswers, i, this.questionAnswers[randomIndex]);
         this.$set(this.questionAnswers, randomIndex, temp);

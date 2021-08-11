@@ -33,7 +33,7 @@ data(){
         amounts:[5,10,15,20,25,30,35,40,45,50],
         difficulties:["easy", "medium", "hard"],
         categories:[],
-        selectedData: {amount: 5, difficulty: "", category: 10}
+        selectedData: {amount: 5, difficulty: "-1", category: -1}
     };
 },
 
