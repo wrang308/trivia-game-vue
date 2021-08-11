@@ -4,10 +4,10 @@
         {{decodeHtml(questions.results[index].question)}}
       </div>
       <div v-if="questions.results[index].type ==='multiple'">
-      <button id="0" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(multiAnswer[0])}}</button>
-      <button id="1" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(multiAnswer[1])}}</button>
-      <button id="2" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(multiAnswer[2])}}</button>
-      <button id="3" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(multiAnswer[3])}}</button>
+      <button id="0" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(questionAnswers[0])}}</button>
+      <button id="1" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(questionAnswers[1])}}</button>
+      <button id="2" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(questionAnswers[2])}}</button>
+      <button id="3" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(questionAnswers[3])}}</button>
       </div>
       <div v-else>
         <button id="true" @click="nextQuestion($event)">TRUE</button>
@@ -31,7 +31,7 @@ export default {
       questions:{},
       userAnswers:[],
       url:'https://opentdb.com/api.php',
-      multiAnswer:[]
+      questionAnswers:[]
       //correctAnswerIndex: ""
       
     }
@@ -60,7 +60,6 @@ export default {
           console.log(error)
         });
 
-
   },
   watch:{
     index(){
@@ -70,11 +69,17 @@ export default {
     }
   },
   methods:{
+    /**
+     * Takes string and decodes it into html code e.g &#039 => '
+     */
     decodeHtml: function (html) {
       let txt = document.createElement("textarea");
       txt.innerHTML = html;
       return txt.value;
     },
+    /**
+     * Handles the logic when an answer is submitted and redirects the user to the next question
+     */
     nextQuestion: function(e){
       //logic to handle right or wrong answer
       this.registerUserAnswers(e.target.innerHTML)
@@ -82,38 +87,34 @@ export default {
       this.asignMultipleAnswers();
       console.log(e.target.id)
     },
+    /**
+     * Adds the users answer to the answer array
+     */
     registerUserAnswers: function(value){
         this.userAnswers.push(value)
     },
+    /**
+     * Adds the different answer to the questionAnswers array and shuffles the array 
+     */
     asignMultipleAnswers(){
       if(this.questions.results[this.index].type === 'multiple'){
-        //logic to randomize answers
         let answers = [...this.questions.results[this.index].incorrect_answers, this.questions.results[this.index].correct_answer];
-       
-        this.multiAnswer = answers;
+        this.questionAnswers = answers;
         this.randomize();
-     //   this.findCorrectAnswerIndex();
 
       }
     },
-    // Using Fisher–Yates shuffle algorithm
+    /**
+     * logic for shuffling the array using Fisher–Yates shuffle algorithm 
+     */
     randomize() {
-      for (let i = this.multiAnswer.length - 1; i > 0; i--) {
+      for (let i = this.questionAnswers.length - 1; i > 0; i--) {
         let randomIndex = Math.floor(Math.random() * i);
-        let temp = this.multiAnswer[i];
-        this.$set(this.multiAnswer, i, this.multiAnswer[randomIndex]);
-        this.$set(this.multiAnswer, randomIndex, temp);
+        let temp = this.questionAnswers[i];
+        this.$set(this.questionAnswers, i, this.questionAnswers[randomIndex]);
+        this.$set(this.questionAnswers, randomIndex, temp);
       }
-    }//,
-    // findCorrectAnswerIndex(){
-    //   for(let i = 0 ; i < this.multiAnswer.length; i++){
-    //     if(this.questions.results[this.index].correct_answer === this.multiAnswer[i]){
-    //       this.correctAnswerIndex = i;
-    //       console.log(i)
-    //       break;
-    //     }
-    //   }
-    // }
+    }
   }
 
 
