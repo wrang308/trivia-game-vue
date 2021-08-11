@@ -62,6 +62,13 @@ export default {
 
 
   },
+  watch:{
+    index(){
+      if(this.index === this.quizInfo.amount){
+        alert("Quiz is finished")
+      }
+    }
+  },
   methods:{
     decodeHtml: function (html) {
       let txt = document.createElement("textarea");
