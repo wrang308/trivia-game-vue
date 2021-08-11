@@ -4,14 +4,14 @@
         {{decodeHtml(questions.results[index].question)}}
       </div>
       <div v-if="questions.results[index].type ==='multiple'">
-      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer[0])}}</button>
-      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer[1])}}</button>
-      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer[2])}}</button>
-      <button class="multiAnsw" @click="nextQuestion">{{decodeHtml(multiAnswer[3])}}</button>
+      <button id="0" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(multiAnswer[0])}}</button>
+      <button id="1" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(multiAnswer[1])}}</button>
+      <button id="2" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(multiAnswer[2])}}</button>
+      <button id="3" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(multiAnswer[3])}}</button>
       </div>
       <div v-else>
-        <button @click="nextQuestion">TRUE</button>
-        <button @click="nextQuestion">FALSE</button>
+        <button id="true" @click="nextQuestion($event)">TRUE</button>
+        <button id="false" @click="nextQuestion($event)">FALSE</button>
       </div>
     </div>
 
@@ -68,10 +68,11 @@ export default {
       txt.innerHTML = html;
       return txt.value;
     },
-    nextQuestion: function(){
+    nextQuestion: function(e){
       //logic to handle right or wrong answer
       this.index ++
       this.asignMultipleAnswers();
+      console.log(e.target.id)
 
     },
     asignMultipleAnswers(){
@@ -81,7 +82,7 @@ export default {
        
         this.multiAnswer = answers;
         this.randomize();
-        this.findCorrectAnswerIndex();
+     //   this.findCorrectAnswerIndex();
 
       }
     },
@@ -93,16 +94,16 @@ export default {
         this.$set(this.multiAnswer, i, this.multiAnswer[randomIndex]);
         this.$set(this.multiAnswer, randomIndex, temp);
       }
-    },
-    findCorrectAnswerIndex(){
-      for(let i = 0 ; i < this.multiAnswer.length; i++){
-        if(this.questions.results[this.index].correct_answer === this.multiAnswer[i]){
-          this.correctAnswerIndex = i;
-          console.log(i)
-          break;
-        }
-      }
-    }
+    }//,
+    // findCorrectAnswerIndex(){
+    //   for(let i = 0 ; i < this.multiAnswer.length; i++){
+    //     if(this.questions.results[this.index].correct_answer === this.multiAnswer[i]){
+    //       this.correctAnswerIndex = i;
+    //       console.log(i)
+    //       break;
+    //     }
+    //   }
+    // }
   }
 
 
