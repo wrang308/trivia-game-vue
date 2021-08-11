@@ -4,14 +4,14 @@
         <span v-html="questions.results[index].question"></span>
       </div>
       <div v-if="questions.results[index].type ==='multiple'">
-      <button id="0" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[0]"></button>
-      <button id="1" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[1]"></button>
-      <button id="2" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[2]"></button>
-      <button id="3" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[3]"></button>
+      <button id="0" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[0]"/>
+      <button id="1" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[1]"/>
+      <button id="2" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[2]"/>
+      <button id="3" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[3]"/>
       </div>
       <div v-else>
-        <button id="true" @click="nextQuestion($event)">TRUE</button>
-        <button id="false" @click="nextQuestion($event)">FALSE</button>
+        <button id="true" @click="nextQuestion($event)" v-html="questionAnswers[0]"/>
+        <button id="false" @click="nextQuestion($event)" v-html="questionAnswers[1]"/>
       </div>
     </div>
 
@@ -53,7 +53,7 @@ export default {
             if(data.response_code ===1){
               alert("Wrong request");
                 this.$router.go(-1)
-            }else this.asignMultipleAnswers();
+            }else this.asignAnswers();
 
         })
         .catch((error) => {
@@ -67,7 +67,7 @@ export default {
    */
   watch:{
     index(){
-      if(this.index === this.quizInfo.amount){
+      if(this.index >= this.quizInfo.amount){
         alert("Quiz is finished")
         this.$router.push({name: 'Result', params:{userAnswers: this.userAnswers, quizInfo: this.quizInfo, questions: this.questions}})
       }
@@ -91,7 +91,7 @@ export default {
       this.registerUserAnswers(e.target.innerHTML)
       this.questions.results[this.index].correct_answer = this.decodeHtml(this.questions.results[this.index].correct_answer);
       this.index ++
-      this.asignMultipleAnswers();
+      this.asignAnswers();
       console.log(e.target.id)
     },
     /**
@@ -103,13 +103,12 @@ export default {
     /**
      * Adds the different answer to the questionAnswers array and shuffles the array 
      */
-    asignMultipleAnswers(){
-      if(this.questions.results[this.index].type === 'multiple'){
+    asignAnswers(){
         let answers = [...this.questions.results[this.index].incorrect_answers, this.questions.results[this.index].correct_answer];
         this.questionAnswers = answers;
         this.randomize();
 
-      }
+
     },
     /**
      * logic for shuffling the array using Fisher–Yates shuffle algorithm 

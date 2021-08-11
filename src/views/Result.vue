@@ -1,15 +1,19 @@
 <template>
 <div>
-  Here are the results
+  <QuizResults :user-answers="userAnswers" :quiz-questions="quizQuestions" :quiz="quiz"></QuizResults>
 </div>
 </template>
 
 <script>
+import QuizResults from "../components/QuizResults";
 export default {
   name: "Result",
+  components:{
+    QuizResults
+  },
   data(){
     return{
-    answers: this.$route.params.userAnswers,
+    userAnswers: this.$route.params.userAnswers,
     quizQuestions: this.$route.params.questions,
     quiz: this.$route.params.quizInfo
      }
