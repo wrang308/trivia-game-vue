@@ -14,7 +14,7 @@ Quiz results component
       </tr>
     </table>
     <div>Result : {{result}} points !</div>
-    <button @click="this.$router.go(-2)" v-html="'Got to Start'"/>
+    <button @click="goBack()" v-html="'Got to Start'"/>
   </div>
 
 </template>
@@ -38,6 +38,11 @@ export default {
         this.result += 10
       }
 
+    }
+  },
+  methods:{
+    goBack: function(){
+      this.$router.go(-2);
     }
   }
 }
