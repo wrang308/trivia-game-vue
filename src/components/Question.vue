@@ -61,10 +61,15 @@ export default {
         });
 
   },
+  /**
+   * Watch method that listens to 'index' variable and check if it is equal to the amount of questions.
+   * If boolean is true we are redirected to the 'Result' view and params are sent as well.
+   */
   watch:{
     index(){
       if(this.index === this.quizInfo.amount){
         alert("Quiz is finished")
+        this.$router.push({name: 'Result', params:{userAnswers: this.userAnswers, quizInfo: this.quizInfo, questions: this.questions}})
       }
     }
   },
