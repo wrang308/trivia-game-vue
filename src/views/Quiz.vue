@@ -1,7 +1,7 @@
 <template>
 <div>
 <div>Hello Quiz</div>
-<Question style="width: 100%" :quizInfo="recievedData"></Question>
+<Question style="width: 100%" :quizInfoProp="recievedData"></Question>
 
 </div>
 </template>

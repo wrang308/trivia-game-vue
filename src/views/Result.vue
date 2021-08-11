@@ -1,6 +1,6 @@
 <template>
 <div>
-  <QuizResults :user-answers="userAnswers" :quiz-questions="quizQuestions" :quiz="quiz"></QuizResults>
+  <QuizResults :userAnswersProp="userAnswers" :questionsProp="questions" :quizInfoProp="quizInfo"></QuizResults>
 </div>
 </template>
 
@@ -14,8 +14,8 @@ export default {
   data(){
     return{
     userAnswers: this.$route.params.userAnswers,
-    quizQuestions: this.$route.params.questions,
-    quiz: this.$route.params.quizInfo
+    questions: this.$route.params.questions,
+    quizInfo: this.$route.params.quizInfo
      }
   }
 

@@ -23,10 +23,11 @@
 export default {
   name: 'Question',
   props:{
-    quizInfo: [Object, Array]
+    quizInfoProp: [Object, Array]
   },
   data(){
     return{
+      quizInfo:{},
       index:0,
       questions:{},
       userAnswers:[],
@@ -37,6 +38,7 @@ export default {
     }
   },
   created() {
+    this.quizInfo = this.quizInfoProp;
    this.url += '?amount='+this.quizInfo.amount;
    if(this.quizInfo.difficulty !== '-1'){
      this.url += '&difficulty='+this.quizInfo.difficulty;
@@ -66,12 +68,52 @@ export default {
    * If boolean is true we are redirected to the 'Result' view and params are sent as well.
    */
   watch:{
+    quizInfo(){
+      localStorage.quizInfo = JSON.stringify(this.quizInfo);
+    },
     index(){
+      localStorage.index = String(this.index);
       if(this.index >= this.quizInfo.amount){
         alert("Quiz is finished")
         this.$router.push({name: 'Result', params:{userAnswers: this.userAnswers, quizInfo: this.quizInfo, questions: this.questions}})
+        localStorage.clear();
       }
+    },
+    questions(){
+      localStorage.questions = JSON.stringify(this.questions);
+    },
+    userAnswers:{
+      handler(newAnswers){
+        localStorage.userAnswers = JSON.stringify(newAnswers);
+      }, deep: true
+    },
+    url(){
+      localStorage.url = this.url;
+    },
+    questionAnswers(){
+      localStorage.questionAnswers = JSON.stringify(this.questionAnswers);
     }
+  },
+  mounted(){
+    if(localStorage.quizInfo){
+      this.quizInfo = JSON.parse(localStorage.quizInfo);
+    }
+    if(localStorage.index){
+      this.index = parseInt(localStorage.index);
+    }
+    if(localStorage.questions){
+      this.questions = JSON.parse(localStorage.questions);
+    }
+    if(localStorage.userAnswers){
+      this.userAnswers = JSON.parse(localStorage.userAnswers);
+    }
+    if(localStorage.url){
+      this.url = localStorage.url;
+    }
+    if(localStorage.questionAnswers){
+      this.questionAnswers = JSON.parse(localStorage.questionAnswers);
+    }
+
   },
   methods:{
     /**
