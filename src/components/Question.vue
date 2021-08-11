@@ -31,7 +31,8 @@ export default {
       questions:{},
       userAnswers:[],
       url:'https://opentdb.com/api.php',
-      multiAnswer:[]
+      multiAnswer:[],
+      correctAnswerIndex: ""
       
     }
   },
@@ -71,6 +72,7 @@ export default {
       //logic to handle right or wrong answer
       this.index ++
       this.asignMultipleAnswers();
+
     },
     asignMultipleAnswers(){
       if(this.questions.results[this.index].type === 'multiple'){
@@ -79,6 +81,8 @@ export default {
        
         this.multiAnswer = answers;
         this.randomize();
+        this.findCorrectAnswerIndex();
+
       }
     },
     // Using Fisher–Yates shuffle algorithm
@@ -88,6 +92,15 @@ export default {
         let temp = this.multiAnswer[i];
         this.$set(this.multiAnswer, i, this.multiAnswer[randomIndex]);
         this.$set(this.multiAnswer, randomIndex, temp);
+      }
+    },
+    findCorrectAnswerIndex(){
+      for(let i = 0 ; i < this.multiAnswer.length; i++){
+        if(this.questions.results[this.index].correct_answer === this.multiAnswer[i]){
+          this.correctAnswerIndex = i;
+          console.log(i)
+          break;
+        }
       }
     }
   }
