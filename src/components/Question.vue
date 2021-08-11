@@ -1,13 +1,13 @@
 <template>
     <div>questions
       <div v-bind="index">
-        {{decodeHtml(questions.results[index].question)}}
+        <span v-html="questions.results[index].question"></span>
       </div>
       <div v-if="questions.results[index].type ==='multiple'">
-      <button id="0" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(questionAnswers[0])}}</button>
-      <button id="1" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(questionAnswers[1])}}</button>
-      <button id="2" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(questionAnswers[2])}}</button>
-      <button id="3" class="multiAnsw" @click="nextQuestion($event)">{{decodeHtml(questionAnswers[3])}}</button>
+      <button id="0" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[0]"></button>
+      <button id="1" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[1]"></button>
+      <button id="2" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[2]"></button>
+      <button id="3" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[3]"></button>
       </div>
       <div v-else>
         <button id="true" @click="nextQuestion($event)">TRUE</button>
@@ -87,7 +87,9 @@ export default {
      */
     nextQuestion: function(e){
       //logic to handle right or wrong answer
+      console.log(e.target)
       this.registerUserAnswers(e.target.innerHTML)
+      this.questions.results[this.index].correct_answer = this.decodeHtml(this.questions.results[this.index].correct_answer);
       this.index ++
       this.asignMultipleAnswers();
       console.log(e.target.id)

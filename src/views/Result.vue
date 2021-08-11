@@ -14,6 +14,8 @@ export default {
     quiz: this.$route.params.quizInfo
      }
   }
+
+
 }
 </script>
 
