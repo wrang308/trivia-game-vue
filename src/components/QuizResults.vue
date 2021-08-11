@@ -15,6 +15,8 @@ Quiz results component
     </table>
     <div>Result : {{result}} points !</div>
     <button @click="goBack()" v-html="'Got to Start'"/>
+    <button @click="goBackToQuiz()" v-html="'Play again'"/>
+
   </div>
 
 </template>
@@ -43,6 +45,9 @@ export default {
   methods:{
     goBack: function(){
       this.$router.go(-2);
+    },
+    goBackToQuiz: function(){
+      this.$router.push({name:'Quiz', params:{data:this.quiz}})
     }
   }
 }
