@@ -1,7 +1,7 @@
 <template>
   <div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma-rtl.css" integrity="sha256-8c3iUwMTRp4NGIoybGwbQUO27Luo4DwwC27e+2IXGzM=" crossorigin="anonymous" />
-Quiz results component
+    <h1 class="title">Quiz results</h1>
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
       <thead>
       <th>Question</th>
