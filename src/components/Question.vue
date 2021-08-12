@@ -51,8 +51,8 @@ export default {
         .catch((error) => {
           console.log(error)
         });
-    }else{
-       this.$router.go(-1);
+    }else if(!localStorage.index){
+       this.$router.push({name:'Home'})
     }
 
   },
