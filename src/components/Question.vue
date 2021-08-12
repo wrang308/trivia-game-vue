@@ -3,16 +3,10 @@
       <div>
         <span v-html="questions.results[this.index].question"></span>
       </div>
-      <div v-if="questions.results[this.index].type === 'multiple'">
-      <button id="0" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[0]"/>
-      <button id="1" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[1]"/>
-      <button id="2" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[2]"/>
-      <button id="3" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[3]"/>
+      <div>
+        <button v-for="item in questionAnswers" :key="item" class="multiAnsw" @click="nextQuestion($event)" v-html="item"/>
       </div>
-      <div v-else>
-        <button id="true" @click="nextQuestion($event)" v-html="questionAnswers[0]"/>
-        <button id="false" @click="nextQuestion($event)" v-html="questionAnswers[1]"/>
-      </div>
+
     </div>
 
 
