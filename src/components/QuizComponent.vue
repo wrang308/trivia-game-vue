@@ -29,6 +29,7 @@ export default {
   },
   created() {
     if(this.quizInfoProp != null){
+      this.index = 0;
     this.quizInfo = this.quizInfoProp;
    this.url += '?amount='+this.quizInfo.amount;
    if(this.quizInfo.difficulty !== '-1'){
@@ -87,12 +88,13 @@ export default {
       localStorage.questionAnswers = JSON.stringify(this.questionAnswers);
     }
   },
-  mounted(){
-    if(localStorage.quizInfo){
-      this.quizInfo = JSON.parse(localStorage.quizInfo);
-    }
+  mounted(){ 
+    if(this.quizInfoProp === undefined){
     if(localStorage.index){
       this.index = parseInt(localStorage.index);
+    }
+    if(localStorage.quizInfo){
+      this.quizInfo = JSON.parse(localStorage.quizInfo);
     }
     if(localStorage.questions){
       this.questions = JSON.parse(localStorage.questions);
@@ -106,7 +108,7 @@ export default {
     if(localStorage.questionAnswers){
       this.questionAnswers = JSON.parse(localStorage.questionAnswers);
     }
-
+    }
   },
   methods:{
     /**
