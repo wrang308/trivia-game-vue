@@ -1,5 +1,8 @@
 # trivia-game
 
+## Visit the web application at 
+https://damp-reaches-89020.herokuapp.com/#/
+
 ## Project setup
 ```
 npm install
