@@ -1,9 +1,9 @@
 <template>
-    <div v-if="questions">questions
-      <div v-bind="index">
-        <span v-html="questions.results[index].question"></span>
+    <div v-if="questions">
+      <div>
+        <span v-html="questions.results[this.index].question"></span>
       </div>
-      <div v-if="questions.results[index].type ==='multiple'">
+      <div v-if="questions.results[this.index].type === 'multiple'">
       <button id="0" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[0]"/>
       <button id="1" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[1]"/>
       <button id="2" class="multiAnsw" @click="nextQuestion($event)" v-html="questionAnswers[2]"/>
@@ -27,18 +27,17 @@ export default {
   },
   data(){
     return{
-      quizInfo:null,
+      quizInfo:{},
       index:0,
       questions:null,
       userAnswers:[],
       url:'https://opentdb.com/api.php',
       questionAnswers:[]
-      //correctAnswerIndex: ""
       
     }
   },
   created() {
-    if(this.quizInfo != null){
+    if(this.quizInfoProp != null){
     this.quizInfo = this.quizInfoProp;
    this.url += '?amount='+this.quizInfo.amount;
    if(this.quizInfo.difficulty !== '-1'){
@@ -47,7 +46,6 @@ export default {
    if(this.quizInfo.category !== -1){
      this.url += '&category='+this.quizInfo.category;
    }
-   //this.url += "&encode=url3986";
 
     fetch(this.url)
         .then(response => response.json())
@@ -134,8 +132,10 @@ export default {
       console.log(e.target)
       this.registerUserAnswers(e.target.innerHTML)
       this.questions.results[this.index].correct_answer = this.decodeHtml(this.questions.results[this.index].correct_answer);
-      this.index ++
+      this.index++
+      if(this.index < this.quizInfo.amount){
       this.asignAnswers();
+      }
       console.log(e.target.id)
     },
     /**
@@ -150,20 +150,23 @@ export default {
     asignAnswers(){
         let answers = [...this.questions.results[this.index].incorrect_answers, this.questions.results[this.index].correct_answer];
         this.questionAnswers = answers;
-        this.randomize();
-
+        this.questionAnswers = this.randomize(this.questionAnswers);
 
     },
     /**
      * logic for shuffling the array using Fisher–Yates shuffle algorithm 
      */
-    randomize() {
-      for (let i = this.questionAnswers.length - 1; i > -1; i--) {
-        let randomIndex = Math.floor(Math.random() * i+1);
-        let temp = this.questionAnswers[i];
-        this.$set(this.questionAnswers, i, this.questionAnswers[randomIndex]);
-        this.$set(this.questionAnswers, randomIndex, temp);
-      }
+
+    randomize(array) {
+        let shuffledArray = [...array];
+        let currentIndex = shuffledArray.length, randomIndex;
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [shuffledArray[currentIndex], shuffledArray[randomIndex]] = [
+                shuffledArray[randomIndex], shuffledArray[currentIndex]];
+        }
+        return shuffledArray;
     }
   }
 
