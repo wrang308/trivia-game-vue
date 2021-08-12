@@ -1,10 +1,10 @@
 <template>
-    <div v-if="questions">
+    <div style="height: 100vh" v-if="questions">
       <div>
-        <span v-html="questions.results[this.index].question"></span>
+        <span id="question" v-html="questions.results[this.index].question"></span>
       </div>
       <div>
-        <button v-for="item in questionAnswers" :key="item" class="multiAnsw" @click="handleQuestion($event)" v-html="item"/>
+        <button v-for="item in questionAnswers" :key="item" class="button is-large is-fullwidth" @click="handleQuestion($event)" v-html="item"/>
       </div>
 
     </div>
@@ -155,9 +155,10 @@ export default {
 </script>
 
 <style scoped>
-.multiAnsw{
-  height: 50px;
-  width: 200px;
+#question{
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
 }
 
 </style>

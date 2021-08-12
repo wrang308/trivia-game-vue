@@ -1,7 +1,5 @@
 <template>
   <div>
-    <div>hej!</div>
-  <router-link :to="{ path: '/Quiz' }">Quiz</router-link>
   <welcome></welcome>
   </div>
 </template>

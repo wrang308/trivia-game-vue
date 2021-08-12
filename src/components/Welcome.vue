@@ -1,6 +1,5 @@
 <template>
     <div>
-        Hello component!
         <div>amount of questions</div>
         <select id="amount" @change="onChange($event)">
             <option v-for="amount in amounts" :key="amount">{{amount}}</option>

@@ -1,6 +1,5 @@
 <template>
   <div v-if="stats.questions">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma-rtl.css" integrity="sha256-8c3iUwMTRp4NGIoybGwbQUO27Luo4DwwC27e+2IXGzM=" crossorigin="anonymous" />
     <h1 class="title">Quiz results</h1>
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
       <thead>
@@ -14,9 +13,9 @@
         <td v-html="item.correct_answer"/>
       </tr>
     </table>
-    <div>Result : {{result}} points !</div>
-    <button @click="goBack()" v-html="'Got to Start'"/>
-    <button @click="goBackToQuiz()" v-html="'Play again'"/>
+    <div class="title">Result : {{result}} points !</div>
+    <button class="button" @click="goBack()" v-html="'Got to Start'"/>
+    <button class="button" @click="goBackToQuiz()" v-html="'Play again'"/>
 
   </div>
 
@@ -77,5 +76,7 @@ export default {
 </script>
 
 <style scoped>
-
+.button{
+  margin: 10px;
+}
 </style>
