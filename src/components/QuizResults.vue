@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="stats.questions">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma-rtl.css" integrity="sha256-8c3iUwMTRp4NGIoybGwbQUO27Luo4DwwC27e+2IXGzM=" crossorigin="anonymous" />
 Quiz results component
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -34,7 +34,7 @@ export default {
     return{
       stats:{
         userAnswers: [],
-        questions:{},
+        questions:null,
         quizInfo:{}
       },
       result: 0
@@ -44,10 +44,12 @@ export default {
     this.stats.userAnswers = this.userAnswersProp;
     this.stats.questions = this.questionsProp;
     this.stats.quizInfo = this.quizInfoProp;
+    if(this.stats.questions != null){
     for(let i = 0; i < this.stats.questions.results.length; i++){
       if(this.stats.userAnswers[i] === this.stats.questions.results[i].correct_answer){
         this.result += 10
       }
+    }
       localStorage.stats = JSON.stringify(this.stats);
       localStorage.result = String(this.result);
 
