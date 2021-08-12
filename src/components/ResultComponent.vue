@@ -1,6 +1,6 @@
 <template>
   <div v-if="stats.questions">
-    <h1 class="title">Quiz results</h1>
+    <div class="title">Quiz results</div>
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
       <thead>
       <th>Question</th>
@@ -88,5 +88,9 @@ export default {
 <style scoped>
 .button {
   margin: 10px;
+}
+.title{
+  color: white; 
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 </style>
