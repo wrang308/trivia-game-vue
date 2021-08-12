@@ -1,6 +1,6 @@
 <template>
   <div class="rainBow">
-    <Question style="width: 80%; margin: 50px; height: calc(100vh - 100px)" :quizInfoProp="recievedData"></Question>
+    <Question style="width: 80%; margin: 50px 10%; height: calc(100vh - 100px)" :quizInfoProp="recievedData"></Question>
 
   </div>
 </template>
