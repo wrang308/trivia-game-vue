@@ -44,13 +44,15 @@ export default {
         .then(data => {
             if(data.response_code ===1){
               alert("Something went wrong with your request, please try again with different parameters");
-                this.$router.go(-1)
+                this.$router.go(-1);
             }else this.asignAnswers();
 
         })
         .catch((error) => {
           console.log(error)
         });
+    }else{
+       this.$router.go(-1);
     }
 
   },
