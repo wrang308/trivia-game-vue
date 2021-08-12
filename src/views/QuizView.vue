@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Question from '../components/Question.vue'
+import Question from '../components/QuizComponent.vue'
 
 export default {
   name: "Quiz",

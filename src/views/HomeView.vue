@@ -10,7 +10,7 @@
 
 <script>
 
-import Welcome from '../components/Welcome.vue'
+import Welcome from '../components/HomeComponent.vue'
 
 export default{
     name: 'Home',

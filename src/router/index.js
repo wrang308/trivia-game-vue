@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import Home from '../views/Home';
-import Quiz from '../views/Quiz';
-import Result from "../views/Result";
+import Home from '../views/HomeView';
+import Quiz from '../views/QuizView';
+import Result from "../views/ResultView";
 import VueRouter from 'vue-router';
 
 

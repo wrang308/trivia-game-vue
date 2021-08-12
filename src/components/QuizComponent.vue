@@ -1,6 +1,6 @@
 <template>
     <div style="height: 100vh" v-if="questions">
-      <div style="height: 25vh">
+      <div style="height: 30vh">
         <span id="question" v-html="questions.results[this.index].question"></span>
       </div>
       <div>

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import QuizResults from "../components/QuizResults";
+import QuizResults from "../components/ResultComponent";
 export default {
   name: "Result",
   components:{
