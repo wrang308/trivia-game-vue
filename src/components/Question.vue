@@ -43,7 +43,7 @@ export default {
         .then(data => this.questions = data)
         .then(data => {
             if(data.response_code ===1){
-              alert("Wrong request");
+              alert("Something went wrong with your request, please try again with different parameters");
                 this.$router.go(-1)
             }else this.asignAnswers();
 
