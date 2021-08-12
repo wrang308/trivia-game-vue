@@ -1,5 +1,5 @@
 <template>
-    <div>questions
+    <div v-if="questions">questions
       <div v-bind="index">
         <span v-html="questions.results[index].question"></span>
       </div>
@@ -27,9 +27,9 @@ export default {
   },
   data(){
     return{
-      quizInfo:{},
+      quizInfo:null,
       index:0,
-      questions:{},
+      questions:null,
       userAnswers:[],
       url:'https://opentdb.com/api.php',
       questionAnswers:[]
@@ -38,6 +38,7 @@ export default {
     }
   },
   created() {
+    if(this.quizInfo != null){
     this.quizInfo = this.quizInfoProp;
    this.url += '?amount='+this.quizInfo.amount;
    if(this.quizInfo.difficulty !== '-1'){
@@ -61,6 +62,7 @@ export default {
         .catch((error) => {
           console.log(error)
         });
+    }
 
   },
   /**
