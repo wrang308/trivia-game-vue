@@ -1,7 +1,7 @@
 <template>
   <div v-if="stats.questions">
     <div class="title">Quiz results</div>
-    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="opacity: 0.75;">
       <thead>
       <th>Question</th>
       <th>Your Answer</th>

@@ -33,8 +33,8 @@ export default {
 <style scoped>
 .bg {
   background: url(https://source.unsplash.com/1600x900);
-  height: 100vh;
-  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-repeat: repeat-y;
   background-size: cover;
 }
 </style>
