@@ -4,13 +4,10 @@
         <span v-html="questions.results[this.index].question"></span>
       </div>
       <div>
-        <button v-for="item in questionAnswers" :key="item" class="multiAnsw" @click="nextQuestion($event)" v-html="item"/>
+        <button v-for="item in questionAnswers" :key="item" class="multiAnsw" @click="handleQuestion($event)" v-html="item"/>
       </div>
 
     </div>
-
-
-
 </template>
 <script>
 
@@ -121,14 +118,14 @@ export default {
     /**
      * Handles the logic when an answer is submitted and redirects the user to the next question
      */
-    nextQuestion: function(e){
+    handleQuestion: function(e){
       //logic to handle right or wrong answer
       console.log(e.target)
       this.registerUserAnswers(e.target.innerHTML)
       this.questions.results[this.index].correct_answer = this.decodeHtml(this.questions.results[this.index].correct_answer);
-      this.index++
       if(this.index < this.quizInfo.amount){
-      this.asignAnswers();
+        this.index++
+        this.asignAnswers();
       }
       console.log(e.target.id)
     },
@@ -150,7 +147,6 @@ export default {
     /**
      * logic for shuffling the array using Fisher–Yates shuffle algorithm 
      */
-
     randomize(array) {
         let shuffledArray = [...array];
         let currentIndex = shuffledArray.length, randomIndex;
