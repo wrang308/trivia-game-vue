@@ -62,9 +62,6 @@ data(){
             default:
                 console.log("error, no match");
             }
-            console.log(e.target.value)
-            console.log(e.target.id)
-            
 
         }
     }

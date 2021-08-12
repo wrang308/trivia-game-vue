@@ -119,15 +119,12 @@ export default {
      * Handles the logic when an answer is submitted and redirects the user to the next question
      */
     handleQuestion: function(e){
-      //logic to handle right or wrong answer
-      console.log(e.target)
       this.registerUserAnswers(e.target.innerHTML)
       this.questions.results[this.index].correct_answer = this.decodeHtml(this.questions.results[this.index].correct_answer);
       this.index++
       if(this.index < this.quizInfo.amount){ 
         this.asignAnswers();
       }
-      console.log(e.target.id)
     },
     /**
      * Adds the users answer to the answer array
