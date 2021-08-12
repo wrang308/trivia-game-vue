@@ -1,6 +1,5 @@
 <template>
 <div>
-<div>Hello Quiz</div>
 <Question style="width: 100%" :quizInfoProp="recievedData"></Question>
 
 </div>
@@ -18,10 +17,7 @@ export default {
     return{
       recievedData: this.$route.params.data
     }
-  },
-  // created(){
-  //   this.recievedData = this.$route.params.data;
-  // }
+  }
 }
 </script>
 
