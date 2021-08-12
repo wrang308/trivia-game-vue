@@ -2,9 +2,9 @@
   <div id="home">
     <div id="header">
       <p>Welcome to Open Trivia</p>
-    <span id="desc">Please select an amount of questions, difficulty level and category</span>
+      <span id="desc">Please select an amount of questions, difficulty level and category</span>
     </div>
-  <welcome id="welcome"></welcome>
+    <welcome id="welcome"></welcome>
   </div>
 </template>
 
@@ -12,27 +12,28 @@
 
 import Welcome from '../components/HomeComponent.vue'
 
-export default{
-    name: 'Home',
-    components:{
-        Welcome
-        
-    }
-}
+export default {
+  name: 'Home',
+  components: {
+    Welcome
 
+  }
+}
 
 
 </script>
 <style scoped>
-#home{
+#home {
   padding-top: 5%;
 
 }
-#header{
+
+#header {
   font-size: 50px;
   margin: 10px;
 }
-#desc{
+
+#desc {
   font-size: 20px;
 }
 

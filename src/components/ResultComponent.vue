@@ -9,11 +9,12 @@
       </thead>
       <tr v-for="(item, index) in stats.questions.results" :key="index">
         <td v-html="item.question"></td>
-        <td v-bind:style="[stats.userAnswers[index] === item.correct_answer ? {'color':'green'} : {'color':'red'}]" v-html="stats.userAnswers[index]"/>
+        <td v-bind:style="[stats.userAnswers[index] === item.correct_answer ? {'color':'green'} : {'color':'red'}]"
+            v-html="stats.userAnswers[index]"/>
         <td v-html="item.correct_answer"/>
       </tr>
     </table>
-    <div class="title">Result : {{result}} points</div>
+    <div class="title">Result : {{ result }} points</div>
     <button class="button" @click="goBack()" v-html="'Got to Start'"/>
     <button class="button" @click="goBackToQuiz()" v-html="'Play again'"/>
 
@@ -24,51 +25,60 @@
 <script>
 export default {
   name: "QuizResults",
-  props:{
+  props: {
     userAnswersProp: [Object, Array],
     questionsProp: [Object, Array],
     quizInfoProp: [Object, Array],
   },
-  data(){
-    return{
-      stats:{
+  data() {
+    return {
+      stats: {
         userAnswers: [],
-        questions:null,
-        quizInfo:{}
+        questions: null,
+        quizInfo: {}
       },
       result: 0
     }
   },
-  created(){
+  /**
+   * Assigning data from props
+   */
+  created() {
     this.stats.userAnswers = this.userAnswersProp;
     this.stats.questions = this.questionsProp;
     this.stats.quizInfo = this.quizInfoProp;
-    if(this.stats.questions != null){
-    for(let i = 0; i < this.stats.questions.results.length; i++){
-      if(this.stats.userAnswers[i] === this.stats.questions.results[i].correct_answer){
-        this.result += 10
+    if (this.stats.questions != null) {
+      for (let i = 0; i < this.stats.questions.results.length; i++) {
+        if (this.stats.userAnswers[i] === this.stats.questions.results[i].correct_answer) {
+          this.result += 10
+        }
       }
-    }
       localStorage.stats = JSON.stringify(this.stats);
       localStorage.result = String(this.result);
 
     }
   },
-  mounted(){
-    if(localStorage.stats){
+  /**
+   * Recovering data from Local Storage when browser have been refreshed
+   */
+  mounted() {
+    if (localStorage.stats) {
       this.stats = JSON.parse(localStorage.stats);
     }
-    if(localStorage.result){
+    if (localStorage.result) {
       this.result = parseInt(localStorage.result)
     }
   },
-  methods:{
-    goBack: function(){
-      this.$router.push({name:'Home'})
+  /**
+   * Router methods that re-direct us to other views and clear our Local Storage
+   */
+  methods: {
+    goBack: function () {
+      this.$router.push({name: 'Home'})
       localStorage.clear();
     },
-    goBackToQuiz: function(){
-      this.$router.push({name:'Quiz', params:{data: this.stats.quizInfo}})
+    goBackToQuiz: function () {
+      this.$router.push({name: 'Quiz', params: {data: this.stats.quizInfo}})
       localStorage.clear();
     }
   }
@@ -76,7 +86,7 @@ export default {
 </script>
 
 <style scoped>
-.button{
+.button {
   margin: 10px;
 }
 </style>
