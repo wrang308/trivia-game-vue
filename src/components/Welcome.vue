@@ -1,71 +1,96 @@
 <template>
   <div>
-    <div id="menu">
-
-
-
-      <div class="menuOption">
-    <div>Amount of questions</div>
-    <div class="select is-small">
-    <select  class="dropdown is-active" id="amount" @change="onChange($event)">
-      <option class="dropdown-content" v-for="amount in amounts" :key="amount">{{ amount }}</option>
-    </select>
-    </div>
-      </div>
-
-      <div class="menuOption">
-    <div>Difficulty</div>
-        <div class="select is-small">
-    <select class="dropdown is-active" id="difficulties" @change="onChange($event)">
-      <option class="dropdown-content" value="-1">All difficulties</option>
-      <option class="dropdown-content" v-for="difficulty in difficulties" :key="difficulty">{{ difficulty }}</option>
-    </select>
+    <div id="menu" class="row">
+      <div class="menuOption col-sm-4">
+        <div>Amount of questions</div>
+        <div style="width:100%;" class="select is-small">
+          <select
+            class="dropdown is-active"
+            id="amount"
+            @change="onChange($event)"
+          >
+            <option
+              class="dropdown-content"
+              v-for="amount in amounts"
+              :key="amount"
+            >
+              {{ amount }}
+            </option>
+          </select>
         </div>
       </div>
 
-    <div class="menuOption">
-    <div>Categories</div>
-      <div class="select is-small">
-    <select class="dropdown is-active" id="categories" @change="onChange($event)">
-      <option class="dropdown-content" value="-1">All categories</option>
-      <option class="dropdown-content" v-for="category in categories.trivia_categories" :key="category.id" :value="category.id">
-        {{ category.name }}
-      </option>
-    </select>
+      <div class="menuOption col-sm-4">
+        <div>Difficulty</div>
+        <div style="width:100%;" class="select is-small">
+          <select
+            class="dropdown is-active"
+            id="difficulties"
+            @change="onChange($event)"
+          >
+            <option class="dropdown-content" value="-1">
+              All difficulties
+            </option>
+            <option
+              class="dropdown-content"
+              v-for="difficulty in difficulties"
+              :key="difficulty"
+            >
+              {{ difficulty }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="menuOption col-sm-4">
+        <div>Categories</div>
+        <div style="width:100%;" class="select is-small">
+          <select
+            class="dropdown is-active"
+            id="categories"
+            @change="onChange($event)"
+          >
+            <option class="dropdown-content" value="-1">All categories</option>
+            <option
+              class="dropdown-content"
+              v-for="category in categories.trivia_categories"
+              :key="category.id"
+              :value="category.id"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
 
-    </div>
-
-    <router-link :to="{ name:'Quiz', params: { data: this.selectedData}}">
+    <router-link :to="{ name: 'Quiz', params: { data: this.selectedData } }">
       <button id="play" class="button is-large">PLAY</button>
     </router-link>
-
   </div>
 </template>
 
 <script>
-
-
 export default {
-  name: 'Welcome',
+  name: "Welcome",
   data() {
     return {
       amounts: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
       difficulties: ["easy", "medium", "hard"],
       categories: [],
-      selectedData: {amount: 5, difficulty: "-1", category: -1}
+      selectedData: { amount: 5, difficulty: "-1", category: -1 },
     };
   },
 
   created() {
     fetch("https://opentdb.com/api_category.php")
-        .then(response => response.json())
-        .then(data => this.categories = data)
-        .catch((error) => {
-          console.log(error)
-        });
-  }, methods: {
+      .then((response) => response.json())
+      .then((data) => (this.categories = data))
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  methods: {
     /**
      * Handles the change on the different selects and updates the selected data every time a select is changed
      */
@@ -83,38 +108,35 @@ export default {
         default:
           console.log("error, no match");
       }
-
-    }
-  }
-
-}
-
-
+    },
+  },
+};
 </script>
 
 <style scoped>
-#menu{
+#menu {
   display: flex;
   justify-content: space-evenly;
   margin: 10px;
-
 }
-.menuOption{
+.menuOption {
   font-family: Tahoma;
   font-size: 30px;
 
   align-self: center;
 }
-.dropdown is-active{
+.dropdown is-active {
   width: 100px;
   height: 100px;
 }
-.dropdown-content{
+.dropdown-content {
   font-size: 20px;
 }
-#play{
+#play {
   border: solid black;
 }
 
-
+select {
+  width: 100%;
+}
 </style>

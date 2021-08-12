@@ -13,7 +13,7 @@
         <td v-html="item.correct_answer"/>
       </tr>
     </table>
-    <div class="title">Result : {{result}} points !</div>
+    <div class="title">Result : {{result}} points</div>
     <button class="button" @click="goBack()" v-html="'Got to Start'"/>
     <button class="button" @click="goBackToQuiz()" v-html="'Play again'"/>
 
