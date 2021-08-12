@@ -10,7 +10,7 @@
       </thead>
       <tr v-for="(item, index) in stats.questions.results" :key="index">
         <td v-html="item.question"></td>
-        <td v-bind:style="[stats.userAnswers[index] === item.correct_answer ? {'color':'green'} : {'color':'red'}]">{{stats.userAnswers[index]}}</td>
+        <td v-bind:style="[stats.userAnswers[index] === item.correct_answer ? {'color':'green'} : {'color':'red'}]" v-html="stats.userAnswers[index]"/>
         <td v-html="item.correct_answer"/>
       </tr>
     </table>

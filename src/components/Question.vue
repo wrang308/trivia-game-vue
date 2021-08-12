@@ -110,19 +110,10 @@ export default {
   },
   methods:{
     /**
-     * Takes string and decodes it into html code e.g &#039 => '
-     */
-    decodeHtml: function (html) {
-      let txt = document.createElement("textarea");
-      txt.innerHTML = html;
-      return txt.value;
-    },
-    /**
      * Handles the logic when an answer is submitted and redirects the user to the next question
      */
     handleQuestion: function(e){
       this.registerUserAnswers(e.target.innerHTML);
-      this.questions.results[this.index].correct_answer = this.decodeHtml(this.questions.results[this.index].correct_answer);
       this.index++;
       if(this.index < this.quizInfo.amount){ 
         this.asignAnswers();
