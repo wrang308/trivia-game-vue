@@ -1,26 +1,44 @@
 <template>
   <div>
-    <div>amount of questions</div>
-    <select class="dropdown is-active" id="amount" @change="onChange($event)">
+    <div id="menu">
+
+
+
+      <div class="menuOption">
+    <div>Amount of questions</div>
+    <div class="select is-small">
+    <select  class="dropdown is-active" id="amount" @change="onChange($event)">
       <option class="dropdown-content" v-for="amount in amounts" :key="amount">{{ amount }}</option>
     </select>
+    </div>
+      </div>
 
-    <div>difficulty</div>
+      <div class="menuOption">
+    <div>Difficulty</div>
+        <div class="select is-small">
     <select class="dropdown is-active" id="difficulties" @change="onChange($event)">
       <option class="dropdown-content" value="-1">All difficulties</option>
       <option class="dropdown-content" v-for="difficulty in difficulties" :key="difficulty">{{ difficulty }}</option>
     </select>
+        </div>
+      </div>
 
-    <div>categories</div>
+    <div class="menuOption">
+    <div>Categories</div>
+      <div class="select is-small">
     <select class="dropdown is-active" id="categories" @change="onChange($event)">
       <option class="dropdown-content" value="-1">All categories</option>
       <option class="dropdown-content" v-for="category in categories.trivia_categories" :key="category.id" :value="category.id">
         {{ category.name }}
       </option>
     </select>
+      </div>
+    </div>
+
+    </div>
 
     <router-link :to="{ name:'Quiz', params: { data: this.selectedData}}">
-      <button>Quiz</button>
+      <button id="play" class="button is-large">PLAY</button>
     </router-link>
 
   </div>
@@ -75,5 +93,28 @@ export default {
 </script>
 
 <style scoped>
+#menu{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px;
+
+}
+.menuOption{
+  font-family: Tahoma;
+  font-size: 30px;
+
+  align-self: center;
+}
+.dropdown is-active{
+  width: 100px;
+  height: 100px;
+}
+.dropdown-content{
+  font-size: 20px;
+}
+#play{
+  border: solid black;
+}
+
 
 </style>
