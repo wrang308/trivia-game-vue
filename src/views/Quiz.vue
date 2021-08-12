@@ -1,6 +1,6 @@
 <template>
 <div class="rainBow">
-<Question style="width: 80%; margin: 5%;" :quizInfoProp="recievedData"></Question>
+<Question style="width: 80%; margin: 50px; height: calc(100vh - 100px)" :quizInfoProp="recievedData"></Question>
 
 </div>
 </template>
@@ -30,4 +30,5 @@ export default {
   overflow-x: hidden;
 }
 @keyframes gradient {	0% {		background-position: 0% 50%;	}	50% {		background-position: 100% 50%;	}	100% {		background-position: 0% 50%;	}}
+
 </style>
