@@ -62,7 +62,7 @@ export default {
   },
   methods:{
     goBack: function(){
-      this.$router.go(-2);
+      this.$router.push({name:'Home'})
       localStorage.clear();
     },
     goBackToQuiz: function(){
