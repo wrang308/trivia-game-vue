@@ -1,4 +1,5 @@
 <template>
+
 <div>
   <QuizResults :userAnswersProp="userAnswers" :questionsProp="questions" :quizInfoProp="quizInfo"></QuizResults>
 </div>
@@ -17,7 +18,8 @@ export default {
     questions: this.$route.params.questions,
     quizInfo: this.$route.params.quizInfo
      }
-  }
+  },
+
 
 
 }
