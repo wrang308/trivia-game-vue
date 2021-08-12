@@ -1,7 +1,8 @@
 <template>
   <div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma-rtl.css" integrity="sha256-8c3iUwMTRp4NGIoybGwbQUO27Luo4DwwC27e+2IXGzM=" crossorigin="anonymous" />
 Quiz results component
-    <table>
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
       <thead>
       <th>Question</th>
       <th>Your Answer</th>
@@ -10,7 +11,7 @@ Quiz results component
       <tr v-for="(item, index) in stats.questions.results" :key="item">
         <td v-html="item.question"></td>
         <td v-bind:style="[stats.userAnswers[index] === item.correct_answer ? {'color':'green'} : {'color':'red'}]">{{stats.userAnswers[index]}}</td>
-        <td>{{item.correct_answer}}</td>
+        <td v-html="item.correct_answer"/>
       </tr>
     </table>
     <div>Result : {{result}} points !</div>
