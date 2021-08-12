@@ -8,7 +8,7 @@ Quiz results component
       <th>Your Answer</th>
       <th>Correct Answer</th>
       </thead>
-      <tr v-for="(item, index) in stats.questions.results" :key="item">
+      <tr v-for="(item, index) in stats.questions.results" :key="index">
         <td v-html="item.question"></td>
         <td v-bind:style="[stats.userAnswers[index] === item.correct_answer ? {'color':'green'} : {'color':'red'}]">{{stats.userAnswers[index]}}</td>
         <td v-html="item.correct_answer"/>
