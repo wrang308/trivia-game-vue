@@ -1,6 +1,6 @@
 <template>
 
-  <div class="bg">
+  <div class="background">
     <QuizResults :userAnswersProp="userAnswers" :questionsProp="questions" :quizInfoProp="quizInfo"></QuizResults>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped>
-.bg {
+.background {
   background: url(https://source.unsplash.com/1600x900);
   min-height: 100vh;
   background-repeat: repeat-y;
