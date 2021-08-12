@@ -123,8 +123,8 @@ export default {
       console.log(e.target)
       this.registerUserAnswers(e.target.innerHTML)
       this.questions.results[this.index].correct_answer = this.decodeHtml(this.questions.results[this.index].correct_answer);
-      if(this.index < this.quizInfo.amount){
-        this.index++
+      this.index++
+      if(this.index < this.quizInfo.amount){ 
         this.asignAnswers();
       }
       console.log(e.target.id)

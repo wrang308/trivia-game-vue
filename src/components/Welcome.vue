@@ -60,7 +60,7 @@ data(){
                 this.selectedData.category = e.target.value;
                 break;
             default:
-                // code block
+                console.log("error, no match");
             }
             console.log(e.target.value)
             console.log(e.target.id)
